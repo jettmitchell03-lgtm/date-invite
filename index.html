@@ -52,9 +52,13 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="screen1">
+    <h1>I've been wanting to ask you something...</h1>
+    <button id="whatBtn">What? 👀</button>
+</div>
+
+<div class="container" id="screen2" style="display:none;">
     <h1>Will you go on a date with me? ❤️</h1>
-    <p>I've been wanting to ask you something...</p>
 
     <button id="yesBtn">Yes ❤️</button>
     <button id="noBtn">No 😅</button>
@@ -63,23 +67,31 @@
 </div>
 
 <script>
+    const screen1 = document.getElementById("screen1");
+    const screen2 = document.getElementById("screen2");
+    const whatBtn = document.getElementById("whatBtn");
+
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const response = document.getElementById("response");
 
     let yesSize = 1;
 
+    whatBtn.addEventListener("click", () => {
+        screen1.style.display = "none";
+        screen2.style.display = "block";
+    });
+
     yesBtn.addEventListener("click", () => {
         response.textContent = "Yay! I can't wait! ❤️";
     });
 
     noBtn.addEventListener("mouseover", () => {
-        // Move No button
         const x = Math.random() * 300 - 150;
         const y = Math.random() * 200 - 100;
+
         noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
-        // Grow Yes button
         yesSize += 0.2;
         yesBtn.style.transform = `scale(${yesSize})`;
     });
